@@ -1,0 +1,261 @@
+You are a senior front-end engineer and experience designer.
+Build a **premium, modern, mobile-first landing page** for a Serbian B2B accounting firm **MasterMind**, tailored to the **Accuracy-Driven Manager persona**.
+
+The page must feel:
+
+* structured
+* calm
+* intelligent
+* high-end professional
+* visually disciplined
+
+Use **clean semantic HTML**, **modern CSS or Tailwind**, and **minimal JS** for scroll effects & animations.
+The landing page must blend **text + photography** elegantly, with hero and section images matching Persona 1’s mindset.
+
+---
+
+## BRAND DESIGN TOKENS
+
+Colors (use ONLY these HEX):
+
+* #1A1F2B (Deep Corporate Navy) → main backgrounds, header, strong text blocks
+* #3A4750 (Graphite Steel) → secondary text, icon strokes
+* #D9D9D9 (Soft Silver) → lines, card borders
+* #0E6BA8 (Trust Blue) → CTAs, interactive highlights
+* #E8F1F8 (Clean Ice White) → section backgrounds, surface layers
+
+Typography:
+
+* One premium sans-serif (Inter, IBM Plex Sans, or similar).
+* Headings: semibold + tight tracking.
+* Body: regular + relaxed line-height (supports clarity).
+
+Spacing:
+
+* Mobile-first
+* 8pt spacing grid
+* Section padding 48–72px mobile, 96px desktop
+
+Imagery:
+
+* Real business photography
+* Neutral, cool-toned lighting
+* Scenes of structured work: documents, hands organizing files, clean desks, portraits of professionals, digital dashboards
+* Avoid cliché “stock smiles”; favor calm, focused expressions.
+
+---
+
+## UX PRINCIPLES (PERSONA 1)
+
+This user values:
+
+* order
+* legal & financial accuracy
+* predictable processes
+* structured information
+* minimal distraction
+
+So the UX must:
+
+* use **symmetry, clean grids, and simple layouts**
+* show **trust cues first**
+* include **real-world business photography**
+* keep animations subtle & linear
+* avoid overwhelming colors or flashy patterns
+
+---
+
+## PAGE STRUCTURE (ONE-PAGE)
+
+Build the following sections with anchor navigation:
+
+1. Sticky Header Navigation
+2. Hero (Split layout: text + fullscreen image)
+3. Trust Bar (logos or reassurance phrases)
+4. “Za koga radimo” (Persona tiles with supporting images)
+5. “Naše usluge” (iconographic + textual)
+6. “Kako radimo” (structured process timeline with photo accents)
+7. “Zašto nam veruju” (trust pillars + supporting photography)
+8. “Cene i paketi” (clear, honest pricing, visually tidy)
+9. FAQ accordion
+10. Kontakt + Lokacije
+11. Minimal footer
+
+Smooth scroll for all anchor links.
+
+---
+
+## SECTION REQUIREMENTS
+
+### HEADER
+
+* Sticky, deep navy (#1A1F2B) background
+* Left: "MASTERMINd"
+* Right: navigation
+* On scroll: add very subtle shadow
+* Mobile: hamburger menu slides down a clean full-width panel
+
+### HERO (text + image)
+
+A premium SaaS-style hero with a **split layout**:
+
+Left side:
+
+* Eyebrow: “MODERNO POSLOVNO KNJIGOVODSTVO”
+* H1: “Knjigovodstvo, porezi i likvidacije bez stresa.”
+* Short paragraph: digital bookkeeping, legal compliance, ERP integration, SEF API
+* Primary CTA (solid Trust Blue): “Zakažite konsultacije”
+* Secondary CTA (outline): “Pogledajte usluge”
+
+Right side:
+
+* Full-height cinematic photograph:
+
+  * A professional authentic person organizing documents, reviewing reports, or working at a clean desk
+  * Cool lighting, structured composition, aligned with Persona 1’s Action Tag (“poravnava dokumenta”)
+  * Use soft silver & navy tones + clean whites
+
+Animation:
+
+* Text fade-up on load
+* Image fade-in with slight scale from 1.02 → 1
+
+### TRUST BAR
+
+A thin horizontal section under hero.
+Use:
+
+* icons/phrases like “ERP integracija”, “SEF API povezivanje”, “Advokat u timu”, “Dve lokacije u Beogradu”
+* Muted palette, subtle dividers
+
+### “ZA KOGA RADIMO” (Persona Tiles)
+
+Three cards with small supporting photography:
+
+1. Menadžer kome treba red u papirima
+
+   * Image: hands aligning documents, clean desk, tidy office
+   * Style: darker navy card
+2. Preduzetnik koji želi da raste
+
+   * Image: laptop + dashboard, light environment
+3. Kontrolor za koga je sigurnost ključna
+
+   * Image: legal documents, signature moments
+
+Cards must have:
+
+* Portrait/scene image at top (16:9 mobile-friendly)
+* Title + one-sentence description
+* Micro CTA: “Saznajte više”
+
+Animation: staggered fade on scroll
+
+### “NAŠE USLUGE”
+
+Grid with icons + small images where relevant (e.g., a clean workstation):
+
+* Knjigovodstvo
+* PDV i porezi
+* HR i obračuni
+* Pravna podrška i likvidacije
+  Visual direction: very clean cards, light backgrounds, navy headings
+
+### “KAKO RADIMO” — Structured Timeline
+
+4 koraka:
+
+1. Analiza
+2. Postavljanje sistema
+3. Mesečna obrada
+4. Poreska & pravna sigurnost
+
+Each step includes:
+
+* number circle
+* descriptive text
+* small side photography (hands using laptop, organizing documents)
+
+Timeline must be linear & symmetrical.
+Subtle line animation on scroll.
+
+### “ZAŠTO NAM VERUJU”
+
+Grid of 3–4 trust pillars:
+
+* ERP i elektronska razmena
+* Advokat u timu
+* Stabilni procesi
+* Transparentni rokovi
+
+Include supporting photography:
+
+* office spaces
+* signature moments
+* precise desk layouts
+
+Dark navy background with white text.
+
+### “CENE I PAKETI”
+
+One main card:
+
+* Title: “Standardni paket”
+* Price: “od 200€ mesečno”
+* Bullet list of included services
+* CTA button
+
+Design:
+
+* White card on ice-white background
+* Thin navy border + Trust Blue accent
+
+### FAQ
+
+Accordion with clean open/close motion and clear dividers (#D9D9D9).
+
+### KONTAKT
+
+Two-column layout (stacked on mobile):
+Left: form (Ime, Email, Firma, Poruka).
+Right: lokacije + telefoni.
+Background: #E8F1F8
+
+### FOOTER
+
+Minimal navy footer with light text.
+
+---
+
+## INTERACTIONS & ANIMATION RULES
+
+* Smooth scroll for all internal anchors
+* Reveal-on-scroll using fade + translateY
+* Hover effects: subtle lift (translateY -2px) for cards, minimal shadow
+* CTA hover: slight brightening of #0E6BA8
+* Photography reveals with gentle fade mask
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+* Mobile-first HTML + CSS (or Tailwind)
+* Semantic tags: header, nav, main, section, footer
+* Accessible contrast, focus states
+* Clean CSS architecture
+* Include placeholder images but keep structure ready for real photos
+
+---
+
+## DELIVERABLE
+
+Generate complete HTML, CSS (or Tailwind), and JS necessary for:
+
+* sticky header
+* hero with photo
+* scroll-trigger animations
+* responsive sections
+* accordion
+* clean CTA interactions
+
+Write code in a single export-ready file or a multi-file structure depending on best practice.
