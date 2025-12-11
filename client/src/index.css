@@ -9,13 +9,15 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   
-  /* Brand Colors */
-  --color-navy: hsl(222, 25%, 14%); /* #1A1F2B */
-  --color-graphite: hsl(205, 16%, 27%); /* #3A4750 */
-  --color-silver: hsl(0, 0%, 85%); /* #D9D9D9 */
-  --color-trust-blue: hsl(204, 85%, 36%); /* #0E6BA8 */
-  --color-ice-white: hsl(206, 45%, 94%); /* #E8F1F8 */
-
+  /* Modern Palette */
+  --color-navy: hsl(222, 25%, 10%); /* Deeper, richer navy */
+  --color-navy-light: hsl(222, 25%, 18%);
+  --color-graphite: hsl(215, 15%, 35%); /* Softer text color */
+  --color-silver: hsl(210, 20%, 90%); /* Cooler silver */
+  --color-trust-blue: hsl(204, 85%, 36%); /* #0E6BA8 - kept as brand core */
+  --color-trust-blue-light: hsl(204, 85%, 45%); /* For hover/gradients */
+  --color-ice-white: hsl(210, 50%, 98%); /* Cleaner, crisper white */
+  
   /* System Mappings */
   --color-background: var(--color-ice-white);
   --color-foreground: var(--color-navy);
@@ -29,10 +31,10 @@
   --color-primary: var(--color-trust-blue);
   --color-primary-foreground: hsl(0, 0%, 100%);
   
-  --color-secondary: var(--color-silver);
+  --color-secondary: var(--color-ice-white);
   --color-secondary-foreground: var(--color-navy);
   
-  --color-muted: var(--color-ice-white);
+  --color-muted: hsl(210, 20%, 96%);
   --color-muted-foreground: var(--color-graphite);
   
   --color-accent: var(--color-trust-blue);
@@ -45,9 +47,12 @@
   --color-input: var(--color-silver);
   --color-ring: var(--color-trust-blue);
 
-  --font-sans: 'IBM Plex Sans', 'Inter', sans-serif;
+  /* Modern Font Stack */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
   
-  --radius: 0rem; /* Structured, sharp feel */
+  /* Modern Radius */
+  --radius: 0.75rem; 
 }
 
 @layer base {
@@ -58,6 +63,20 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-navy;
+    @apply font-heading font-semibold tracking-tight text-navy;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  
+  .glass-navy {
+    @apply bg-navy/90 backdrop-blur-md border-b border-white/5;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-navy to-trust-blue;
   }
 }
