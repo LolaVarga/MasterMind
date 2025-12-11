@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { 
   CheckCircle2, 
   ArrowRight, 
@@ -17,7 +17,11 @@ import {
   Mail,
   ChevronRight,
   PieChart,
-  Scale
+  Scale,
+  Globe,
+  Truck,
+  Server,
+  FileDigit
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -57,12 +61,12 @@ const MasterMindLanding: FC = () => {
     }
   };
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -79,19 +83,19 @@ const MasterMindLanding: FC = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           scrolled 
             ? "glass-navy py-4 shadow-xl border-white/5" 
-            : "bg-transparent py-8 border-transparent"
+            : "bg-transparent py-6 border-transparent"
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <div 
-            className={`font-heading font-bold text-2xl tracking-tighter cursor-pointer transition-colors ${scrolled ? 'text-white' : 'text-navy'}`} 
+            className={`font-heading font-bold text-2xl tracking-tighter cursor-pointer transition-colors flex items-center gap-2 ${scrolled ? 'text-white' : 'text-navy'}`} 
             onClick={() => window.scrollTo(0,0)}
           >
             MASTERMIN<span className="text-trust-blue">d</span>
           </div>
           
           {/* Desktop Nav */}
-          <nav className={`hidden md:flex items-center gap-10 text-sm font-medium ${scrolled ? 'text-gray-300' : 'text-navy/80'}`}>
+          <nav className={`hidden md:flex items-center gap-8 text-sm font-medium ${scrolled ? 'text-gray-300' : 'text-navy/80'}`}>
             {["Usluge", "Kako radimo", "Cene", "Kontakt"].map((item) => (
               <button 
                 key={item}
@@ -101,6 +105,13 @@ const MasterMindLanding: FC = () => {
                 {item}
               </button>
             ))}
+            
+            {/* Language Badge */}
+            <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${scrolled ? 'border-white/20 bg-white/10 text-white' : 'border-navy/10 bg-white text-navy'} text-xs font-bold tracking-wider`}>
+              <Globe size={14} />
+              <span>SRB | ENG | RUS</span>
+            </div>
+
             <Button className="bg-trust-blue hover:bg-trust-blue-light text-white rounded-full px-8 py-2.5 shadow-lg shadow-trust-blue/25 hover:shadow-trust-blue/40 transition-all hover:-translate-y-0.5">
               Zakažite konsultacije
             </Button>
@@ -123,6 +134,10 @@ const MasterMindLanding: FC = () => {
             className="md:hidden bg-navy absolute w-full left-0 top-full overflow-hidden shadow-2xl border-t border-white/10"
           >
             <div className="flex flex-col p-8 gap-6 text-white h-screen">
+               <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 w-fit text-xs font-bold tracking-wider mb-4">
+                <Globe size={14} />
+                <span>SRB | ENG | RUS</span>
+              </div>
               {["Usluge", "Kako radimo", "Cene", "Kontakt"].map((item) => (
                 <button 
                   key={item}
@@ -140,15 +155,15 @@ const MasterMindLanding: FC = () => {
         )}
       </header>
 
-      {/* 2. Hero Section - Cleaner, Modern Typography */}
-      <section className="relative pt-40 pb-20 md:pt-48 md:pb-40 overflow-hidden">
-        {/* Abstract Background Shapes */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-blue-100/40 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-gray-200/40 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+      {/* 2. Hero Section - More Effective & Readable */}
+      <section className="relative pt-40 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-ice-white">
+        {/* Abstract Background Shapes - More Subtle */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none opacity-60" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Left Content */}
+            {/* Left Content - Stronger Copy */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -157,27 +172,29 @@ const MasterMindLanding: FC = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-silver shadow-sm text-navy text-xs font-bold tracking-widest uppercase">
                 <span className="w-2 h-2 rounded-full bg-trust-blue animate-pulse"/>
-                Moderno Poslovno Knjigovodstvo
+                Digital Accounting & Advisory
               </div>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-navy tracking-tight font-heading">
-                Vaš biznis zaslužuje <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-blue-400">red i sigurnost.</span>
+                Vaš biznis. <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-blue-500">Naš sistem.</span> <br/>
+                Bez granica.
               </h1>
               
-              <p className="text-xl text-graphite leading-relaxed font-light">
-                Knjigovodstvo nove generacije. Digitalizovani procesi, pravna sigurnost i strateško savetovanje za lidere koji cene svoje vreme.
+              <p className="text-lg md:text-xl text-graphite leading-relaxed font-light border-l-4 border-trust-blue pl-6">
+                Kompletna knjigovodstvena, HR i poreska podrška na <strong>srpskom, engleskom i ruskom jeziku</strong>. Koristimo TiM ERP i SEF API za automatizovano poslovanje bez papira.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5 pt-4">
                 <Button className="bg-navy hover:bg-navy-light text-white text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-xl shadow-navy/20">
-                  Zakažite konsultacije
+                  Zakažite sastanak
                 </Button>
                 <Button 
                   variant="outline" 
                   className="bg-white border-silver text-navy hover:bg-ice-white hover:border-trust-blue text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-sm"
                   onClick={() => scrollToSection("usluge")}
                 >
-                  Istražite usluge
+                  Naše usluge
                 </Button>
               </div>
             </motion.div>
@@ -189,26 +206,29 @@ const MasterMindLanding: FC = () => {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-navy/10 border-8 border-white">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-navy/10 border-8 border-white group">
                 <img 
                   src={heroImg}
                   alt="Professional Accountant" 
-                  className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
                 />
-                {/* Floating Elements */}
+                
+                {/* Floating Elements - Updated context */}
                 <motion.div 
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 }}
-                  className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 max-w-[200px]"
+                  className="absolute bottom-8 right-8 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-white/50 max-w-[240px]"
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-green-100 rounded-full text-green-600">
-                      <CheckCircle2 size={16} />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-blue-100 rounded-full text-trust-blue">
+                      <Globe size={18} />
                     </div>
-                    <span className="text-sm font-bold text-navy">Verifikovano</span>
+                    <div>
+                      <span className="text-sm font-bold text-navy block">Međunarodna podrška</span>
+                      <span className="text-[10px] uppercase font-bold text-trust-blue">SRB • ENG • RUS</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-graphite">Dokumentacija 100% usklađena sa zakonom.</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -224,9 +244,9 @@ const MasterMindLanding: FC = () => {
                { icon: ShieldCheck, text: "ERP Integracija" },
                { icon: FileText, text: "SEF API Povezivanje" },
                { icon: Users, text: "Advokat u timu" },
-               { icon: MapPin, text: "Dve lokacije" }
+               { icon: Server, text: "Digitalna Arhiva" }
              ].map((item, idx) => (
-               <div key={idx} className="flex items-center gap-4 group opacity-60 hover:opacity-100 transition-opacity cursor-default">
+               <div key={idx} className="flex items-center gap-4 group opacity-70 hover:opacity-100 transition-opacity cursor-default">
                  <div className="p-2.5 bg-ice-white rounded-xl text-trust-blue group-hover:bg-trust-blue group-hover:text-white transition-colors">
                    <item.icon className="w-5 h-5" />
                  </div>
@@ -237,8 +257,77 @@ const MasterMindLanding: FC = () => {
         </div>
       </div>
 
-      {/* 4. Za koga radimo (Persona Tiles) - More Modern Cards */}
-      <section className="py-32 bg-ice-white">
+      {/* 4. Naše Usluge - Detailed & Updated */}
+      <section id="usluge" className="py-32 bg-ice-white relative">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Sveobuhvatna podrška</h2>
+              <p className="text-lg text-graphite">Naš tim stručnjaka pokriva sve aspekte vašeg poslovanja, od dnevnog knjiženja do kompleksnih poreskih bilansa i likvidacija.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { 
+                icon: Calculator, 
+                title: "Finansijsko Knjigovodstvo", 
+                items: ["Knjiženje dokumentacije", "Obračun PDV-a", "Evidencija osnovnih sredstava", "Završni računi"]
+              },
+              { 
+                icon: PieChart, 
+                title: "Poresko Savetovanje", 
+                items: ["Poreski bilans", "Transferne cene", "Optimizacija poreza", "Amortizacija"]
+              },
+              { 
+                icon: Users, 
+                title: "HR i Obračuni", 
+                items: ["Obračun zarada", "Prijava i odjava radnika", "Ugovori o radu", "Kadrovska evidencija"]
+              },
+              { 
+                icon: Server, 
+                title: "TiM ERP Sistem", 
+                items: ["Elektronska arhiva", "Automatski uvoz izvoda (XML)", "Sinhronizacija podataka", "Povezivanje sa SEF-om"]
+              },
+              { 
+                icon: Scale, 
+                title: "Pravna Podrška", 
+                items: ["Osnivanje preduzeća", "Likvidacija firmi", "Statusne promene", "Pravni saveti"]
+              },
+              { 
+                icon: Truck, 
+                title: "Logistika", 
+                items: ["Kurir za fiskalne račune", "Elektronska razmena", "Bez dolaska u agenciju", "Online uvid"]
+              }
+            ].map((service, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-10 rounded-3xl border border-silver/50 hover:border-trust-blue/30 bg-white hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 bg-ice-white rounded-2xl border border-silver/50 text-navy flex items-center justify-center mb-8 group-hover:bg-trust-blue group-hover:text-white group-hover:border-trust-blue transition-all shadow-sm">
+                  <service.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-6 font-heading text-navy">{service.title}</h3>
+                <ul className="space-y-3">
+                  {service.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-graphite">
+                      <div className="w-1.5 h-1.5 rounded-full bg-trust-blue mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Za koga radimo (Persona Tiles) */}
+      <section className="py-32 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Prilagođeni vašem uspehu</h2>
@@ -302,45 +391,6 @@ const MasterMindLanding: FC = () => {
         </div>
       </section>
 
-      {/* 5. Naše Usluge - Grid Layout */}
-      <section id="usluge" className="py-32 bg-white relative">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Sveobuhvatna podrška</h2>
-              <p className="text-lg text-graphite">Naš tim stručnjaka pokriva sve aspekte vašeg poslovanja, od dnevnog knjiženja do kompleksnih pravnih pitanja.</p>
-            </div>
-            <Button variant="outline" className="rounded-full px-8 border-silver hover:border-trust-blue hover:text-trust-blue">
-              Pogledajte sve usluge
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Calculator, title: "Knjigovodstvo", desc: "Kompletno vođenje poslovnih knjiga u skladu sa zakonom." },
-              { icon: PieChart, title: "PDV i Porezi", desc: "Optimizacija poreza i pravovremene prijave." },
-              { icon: Users, title: "HR i Obračuni", desc: "Obračun zarada, bolovanja i kadrovska administracija." },
-              { icon: Scale, title: "Pravna Podrška", desc: "Savetovanje, osnivanje i likvidacija firmi." }
-            ].map((service, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="p-10 rounded-3xl border border-silver/50 hover:border-trust-blue/30 bg-gray-50/50 hover:bg-white transition-all duration-300 group hover:shadow-xl"
-              >
-                <div className="w-14 h-14 bg-white rounded-2xl border border-silver/50 text-navy flex items-center justify-center mb-8 group-hover:bg-trust-blue group-hover:text-white group-hover:border-trust-blue transition-all shadow-sm">
-                  <service.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-3 font-heading text-navy">{service.title}</h3>
-                <p className="text-sm text-graphite leading-relaxed">{service.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 6. Kako Radimo - Improved Layout */}
       <section id="kako-radimo" className="py-32 bg-ice-white relative overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -392,8 +442,8 @@ const MasterMindLanding: FC = () => {
                 />
                 <div className="absolute inset-0 bg-navy/20 z-20 mix-blend-multiply" />
                 <div className="absolute bottom-10 left-10 z-30 bg-white/90 backdrop-blur p-6 rounded-2xl max-w-xs shadow-lg">
-                  <div className="text-4xl font-bold text-trust-blue font-heading mb-2">100%</div>
-                  <div className="text-sm font-bold text-navy uppercase tracking-wider">Pravna sigurnost</div>
+                  <div className="text-4xl font-bold text-trust-blue font-heading mb-2">API</div>
+                  <div className="text-sm font-bold text-navy uppercase tracking-wider">SEF & E-Banking Integracija</div>
                 </div>
               </motion.div>
             </div>
