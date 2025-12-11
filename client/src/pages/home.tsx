@@ -32,6 +32,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 // Assets
+import logoImg from "@assets/generated_images/Logo.png";
 import heroImg from "@assets/generated_images/professional_reviewing_documents_at_a_clean_desk_with_cool_lighting..png";
 import personaManagerImg from "@assets/generated_images/hands_aligning_documents_on_a_tidy_desk..png";
 import personaEntrepreneurImg from "@assets/generated_images/professional_working_on_laptop_with_dashboard..png";
@@ -86,12 +87,12 @@ const MasterMindLanding: FC = () => {
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <div 
-          className={`font-heading font-bold text-2xl tracking-tighter cursor-pointer transition-colors flex items-center ${scrolled ? 'text-white' : 'text-navy'}`} 
+        <img
+          src={logoImg}
+          alt="MasterMind Logo"
+          className={`h-15 cursor-pointer transition-opacity hover:opacity-80 ${scrolled ? 'brightness-0 invert' : ''}`}
           onClick={() => window.scrollTo(0,0)}
-        >
-          MASTERMIN<span className="text-trust-blue">d</span>
-        </div>
+        />
           
           {/* Desktop Nav */}
           <nav className={`hidden md:flex items-center gap-8 text-sm font-medium ${scrolled ? 'text-gray-300' : 'text-navy/80'}`}>
@@ -675,9 +676,11 @@ const MasterMindLanding: FC = () => {
       <footer className="bg-white border-t border-silver py-16 text-center md:text-left">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="text-navy font-heading font-bold text-3xl tracking-tighter">
-              MASTERMIN<span className="text-trust-blue">d</span>
-            </div>
+            <img
+              src={logoImg}
+              alt="MasterMind Logo"
+              className="h-15"
+            />
             <div className="text-graphite text-sm font-medium">
               {t("footer.copyright", { year: new Date().getFullYear() })}
             </div>
