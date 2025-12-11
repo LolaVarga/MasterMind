@@ -1,0 +1,143 @@
+{
+  "header": {
+    "services": "Services",
+    "howWeWork": "How We Work",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "languages": "SRB | ENG | RUS",
+    "bookConsultation": "Book Consultation"
+  },
+  "hero": {
+    "badge": "Digital Accounting & Advisory",
+    "title": "Your business.",
+    "titleHighlight": "Our system.",
+    "titleEnd": "No limits.",
+    "description": "Complete accounting, HR and tax support in Serbian, English and Russian. We use TiM ERP and SEF API for automated paperless operations.",
+    "scheduleButton": "Schedule Meeting",
+    "servicesButton": "Our Services"
+  },
+  "trustBar": {
+    "erpIntegration": "ERP Integration",
+    "sefApi": "SEF API Connection",
+    "lawyer": "Lawyer in Team",
+    "digitalArchive": "Digital Archive"
+  },
+  "services": {
+    "title": "Comprehensive Support",
+    "description": "Our team of experts covers all aspects of your business, from daily bookkeeping to complex tax returns and liquidations.",
+    "accounting": {
+      "title": "Financial Accounting",
+      "items": ["Document Booking", "VAT Calculation", "Fixed Assets Registry", "Final Accounts"]
+    },
+    "tax": {
+      "title": "Tax Consulting",
+      "items": ["Tax Balance", "Transfer Pricing", "Tax Optimization", "Depreciation"]
+    },
+    "hr": {
+      "title": "HR & Payroll",
+      "items": ["Salary Calculation", "Employee Registration", "Employment Contracts", "Personnel Records"]
+    },
+    "erp": {
+      "title": "TiM ERP System",
+      "items": ["Electronic Archive", "Automatic Statement Import (XML)", "Data Synchronization", "SEF Connection"]
+    },
+    "legal": {
+      "title": "Legal Support",
+      "items": ["Company Formation", "Company Liquidation", "Status Changes", "Legal Advice"]
+    },
+    "logistics": {
+      "title": "Logistics",
+      "items": ["Fiscal Receipt Courier", "Electronic Exchange", "No Agency Visit", "Online Access"]
+    }
+  },
+  "personas": {
+    "title": "Tailored to Your Success",
+    "description": "We understand the specific needs of different leadership profiles and provide exactly what you need.",
+    "manager": {
+      "title": "Manager",
+      "subtitle": "Who needs order",
+      "description": "Precision and organized documentation without chaos."
+    },
+    "entrepreneur": {
+      "title": "Entrepreneur",
+      "subtitle": "Who wants growth",
+      "description": "Focus on business development, we handle the numbers."
+    },
+    "controller": {
+      "title": "Controller",
+      "subtitle": "Security is key",
+      "description": "Maximum legal and tax security."
+    }
+  },
+  "process": {
+    "title": "Your Path to Organized Business",
+    "description": "Simple and transparent cooperation process in 4 steps.",
+    "step1": { "title": "Analysis", "description": "We scan your current state and identify risks." },
+    "step2": { "title": "System Setup", "description": "We implement digital tools and processes." },
+    "step3": { "title": "Monthly Processing", "description": "Regular booking and reporting without delays." },
+    "step4": { "title": "Tax Security", "description": "Continuous monitoring of regulations and consulting." },
+    "apiLabel": "API",
+    "apiDescription": "SEF & E-Banking Integration"
+  },
+  "trust": {
+    "pillar1": { "title": "ERP & Electronic Exchange", "description": "Complete integration with your systems." },
+    "pillar2": { "title": "Lawyer in Team", "description": "Internal legal support for all questions." },
+    "pillar3": { "title": "Stable Processes", "description": "Standardized procedures that don't depend on individuals." },
+    "pillar4": { "title": "Transparent Deadlines", "description": "You always know when your obligations are completed." }
+  },
+  "pricing": {
+    "title": "Standard Package",
+    "subtitle": "Everything a small business needs",
+    "price": "200€",
+    "period": "/ monthly",
+    "badge": "Starting price",
+    "features": [
+      "General Ledger Management",
+      "VAT Calculation",
+      "Payroll (up to 5 employees)",
+      "Final Account",
+      "Tax Consulting (2h monthly)"
+    ],
+    "button": "Request Quote"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": "Do you work with flat-rate agencies?",
+    "a1": "Yes, we have special packages tailored to flat-rate agencies that include self-employment testing.",
+    "q2": "How does the transition from another accountant work?",
+    "a2": "We take over all communication and document transfer. You just need to sign the authorization.",
+    "q3": "Do you use online accounting?",
+    "a3": "Yes, we use modern cloud tools and give you real-time access to your finances.",
+    "q4": "What if I have an inspection?",
+    "a4": "Our team, including legal support, is with you throughout the entire inspection process."
+  },
+  "contact": {
+    "badge": "Let's Talk",
+    "title": "Ready for Change?",
+    "description": "Schedule a free consultation and learn how we can transform your business.",
+    "location": "Locations",
+    "address1": "Boulevard King Alexander 123",
+    "address2": "11000 Belgrade",
+    "phone": "Call Us",
+    "phone1": "+381 11 123 4567",
+    "phone2": "+381 64 123 4567",
+    "email": "Email",
+    "emailAddress": "contact@mastermind.rs",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "We respond within 24 hours",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "john@company.com",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Your Company Name",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "sendButton": "Send Message",
+    "cancelButton": "Cancel"
+  },
+  "footer": {
+    "copyright": "© {{year}} MasterMind Accounting. All rights reserved."
+  }
+}
+

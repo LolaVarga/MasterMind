@@ -1,27 +1,22 @@
 import { FC, useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
-import { 
-  CheckCircle2, 
-  ArrowRight, 
-  Menu, 
-  X, 
-  ShieldCheck, 
-  FileText, 
-  BarChart, 
-  Calculator, 
-  Users, 
-  Briefcase,
-  Clock,
+import { useTranslation } from "react-i18next";
+import {
+  CheckCircle2,
+  ArrowRight,
+  Menu,
+  X,
+  ShieldCheck,
+  FileText,
+  Calculator,
+  Users,
   MapPin,
   Phone,
   Mail,
-  ChevronRight,
   PieChart,
   Scale,
-  Globe,
   Truck,
-  Server,
-  FileDigit
+  Server
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +27,9 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 // Assets
 import heroImg from "@assets/generated_images/professional_reviewing_documents_at_a_clean_desk_with_cool_lighting..png";
@@ -42,6 +40,7 @@ import processImg from "@assets/generated_images/professional_analyzing_financia
 import trustImg from "@assets/generated_images/modern_clean_office_space_with_navy_and_white_tones..png";
 
 const MasterMindLanding: FC = () => {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -87,33 +86,38 @@ const MasterMindLanding: FC = () => {
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-          <div 
-            className={`font-heading font-bold text-2xl tracking-tighter cursor-pointer transition-colors flex items-center gap-2 ${scrolled ? 'text-white' : 'text-navy'}`} 
-            onClick={() => window.scrollTo(0,0)}
-          >
-            MASTERMIN<span className="text-trust-blue">d</span>
-          </div>
+        <div 
+          className={`font-heading font-bold text-2xl tracking-tighter cursor-pointer transition-colors flex items-center ${scrolled ? 'text-white' : 'text-navy'}`} 
+          onClick={() => window.scrollTo(0,0)}
+        >
+          MASTERMIN<span className="text-trust-blue">d</span>
+        </div>
           
           {/* Desktop Nav */}
           <nav className={`hidden md:flex items-center gap-8 text-sm font-medium ${scrolled ? 'text-gray-300' : 'text-navy/80'}`}>
-            {["Usluge", "Kako radimo", "Cene", "Kontakt"].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
+            {[
+              { key: "services", label: t("header.services") },
+              { key: "kako-radimo", label: t("header.howWeWork") },
+              { key: "cene", label: t("header.pricing") },
+              { key: "kontakt", label: t("header.contact") }
+            ].map((item) => (
+              <button
+                key={item.key}
+                onClick={() => scrollToSection(item.key)}
                 className={`hover:text-trust-blue transition-colors font-heading uppercase tracking-widest text-xs font-semibold ${scrolled ? 'hover:text-white' : ''}`}
               >
-                {item}
+                {item.label}
               </button>
             ))}
-            
-            {/* Language Badge */}
-            <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${scrolled ? 'border-white/20 bg-white/10 text-white' : 'border-navy/10 bg-white text-navy'} text-xs font-bold tracking-wider`}>
-              <Globe size={14} />
-              <span>SRB | ENG | RUS</span>
-            </div>
 
-            <Button className="bg-trust-blue hover:bg-trust-blue-light text-white rounded-full px-8 py-2.5 shadow-lg shadow-trust-blue/25 hover:shadow-trust-blue/40 transition-all hover:-translate-y-0.5">
-              Zakažite konsultacije
+            {/* Language Selector */}
+            <LanguageSwitcher scrolled={scrolled} />
+
+            <Button
+              onClick={() => scrollToSection("kontakt")}
+              className="bg-trust-blue hover:bg-trust-blue-light text-white rounded-full px-8 py-2.5 shadow-md shadow-trust-blue/20 hover:shadow-lg hover:shadow-trust-blue/30 transition-all hover:-translate-y-0.5 cursor-pointer font-bold"
+            >
+              {t("header.bookConsultation")}
             </Button>
           </nav>
 
@@ -128,27 +132,32 @@ const MasterMindLanding: FC = () => {
 
         {/* Mobile Nav Panel */}
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden bg-navy absolute w-full left-0 top-full overflow-hidden shadow-2xl border-t border-white/10"
           >
             <div className="flex flex-col p-8 gap-6 text-white h-screen">
-               <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 w-fit text-xs font-bold tracking-wider mb-4">
-                <Globe size={14} />
-                <span>SRB | ENG | RUS</span>
-              </div>
-              {["Usluge", "Kako radimo", "Cene", "Kontakt"].map((item) => (
-                <button 
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
+               <LanguageSwitcher scrolled={true} className="w-fit" />
+              {[
+                { key: "services", label: t("header.services") },
+                { key: "kako-radimo", label: t("header.howWeWork") },
+                { key: "cene", label: t("header.pricing") },
+                { key: "kontakt", label: t("header.contact") }
+              ].map((item) => (
+                <button
+                  key={item.key}
+                  onClick={() => scrollToSection(item.key)}
                   className="text-left py-4 border-b border-white/10 text-2xl font-heading font-bold hover:text-trust-blue transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
-              <Button className="bg-trust-blue hover:bg-trust-blue-light text-white w-full mt-8 py-6 text-lg rounded-xl shadow-lg shadow-trust-blue/20">
-                Zakažite konsultacije
+              <Button
+                onClick={() => scrollToSection("kontakt")}
+                className="bg-trust-blue hover:bg-trust-blue-light text-white w-full mt-8 py-6 text-lg rounded-xl shadow-md shadow-trust-blue/20 hover:shadow-lg hover:shadow-trust-blue/30 cursor-pointer font-bold transition-all hover:scale-[1.02]"
+              >
+                {t("header.bookConsultation")}
               </Button>
             </div>
           </motion.div>
@@ -164,72 +173,59 @@ const MasterMindLanding: FC = () => {
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Left Content - Stronger Copy */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="space-y-10 max-w-xl"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-silver shadow-sm text-navy text-xs font-bold tracking-widest uppercase">
-                <span className="w-2 h-2 rounded-full bg-trust-blue animate-pulse"/>
-                Digital Accounting & Advisory
-              </div>
-              
+              <Badge variant="outline" className="border-silver bg-white text-navy text-xs font-bold tracking-widest uppercase px-4 py-2">
+                <span className="w-2 h-2 rounded-full bg-trust-blue animate-pulse mr-2"/>
+                {t("hero.badge")}
+              </Badge>
+
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-navy tracking-tight font-heading">
-                Vaš biznis. <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-blue-500">Naš sistem.</span> <br/>
-                Bez granica.
+                {t("hero.title")} <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-blue-500">{t("hero.titleHighlight")}</span> <br/>
+                {t("hero.titleEnd")}
               </h1>
-              
+
               <p className="text-lg md:text-xl text-graphite leading-relaxed font-light border-l-4 border-trust-blue pl-6">
-                Kompletna knjigovodstvena, HR i poreska podrška na <strong>srpskom, engleskom i ruskom jeziku</strong>. Koristimo TiM ERP i SEF API za automatizovano poslovanje bez papira.
+                {t("hero.description")}
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-5 pt-4">
-                <Button className="bg-navy hover:bg-navy-light text-white text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-xl shadow-navy/20">
-                  Zakažite sastanak
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="bg-white border-silver text-navy hover:bg-ice-white hover:border-trust-blue text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-sm"
-                  onClick={() => scrollToSection("usluge")}
+                <Button
+                  onClick={() => scrollToSection("kontakt")}
+                  className="bg-trust-blue hover:bg-trust-blue-light text-white text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-md shadow-trust-blue/20 hover:shadow-lg hover:shadow-trust-blue/30 cursor-pointer font-bold"
+                  size="lg"
                 >
-                  Naše usluge
+                  {t("hero.scheduleButton")}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => scrollToSection("services")}
+                  className="bg-white text-navy hover:bg-ice-white border-silver hover:border-trust-blue text-lg px-10 py-7 rounded-2xl transition-all hover:scale-105 shadow-md shadow-black/10 font-bold"
+                  size="lg"
+                >
+                  {t("hero.servicesButton")}
                 </Button>
               </div>
             </motion.div>
 
             {/* Right Image - Floating Glass Effect */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, rotate: 1 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
               className="relative"
             >
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-navy/10 border-8 border-white group">
-                <img 
+                <img
                   src={heroImg}
-                  alt="Professional Accountant" 
+                  alt="Professional Accountant"
                   className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
                 />
-                
-                {/* Floating Elements - Updated context */}
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute bottom-8 right-8 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-white/50 max-w-[240px]"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-blue-100 rounded-full text-trust-blue">
-                      <Globe size={18} />
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold text-navy block">Međunarodna podrška</span>
-                      <span className="text-[10px] uppercase font-bold text-trust-blue">SRB • ENG • RUS</span>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -241,10 +237,10 @@ const MasterMindLanding: FC = () => {
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-wrap justify-center gap-8 md:gap-20 items-center">
              {[
-               { icon: ShieldCheck, text: "ERP Integracija" },
-               { icon: FileText, text: "SEF API Povezivanje" },
-               { icon: Users, text: "Advokat u timu" },
-               { icon: Server, text: "Digitalna Arhiva" }
+               { icon: ShieldCheck, text: t("trustBar.erpIntegration") },
+               { icon: FileText, text: t("trustBar.sefApi") },
+               { icon: Users, text: t("trustBar.lawyer") },
+               { icon: Server, text: t("trustBar.digitalArchive") }
              ].map((item, idx) => (
                <div key={idx} className="flex items-center gap-4 group opacity-70 hover:opacity-100 transition-opacity cursor-default">
                  <div className="p-2.5 bg-ice-white rounded-xl text-trust-blue group-hover:bg-trust-blue group-hover:text-white transition-colors">
@@ -258,46 +254,46 @@ const MasterMindLanding: FC = () => {
       </div>
 
       {/* 4. Naše Usluge - Detailed & Updated */}
-      <section id="usluge" className="py-32 bg-ice-white relative">
+      <section id="services" className="py-32 bg-ice-white relative">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Sveobuhvatna podrška</h2>
-              <p className="text-lg text-graphite">Naš tim stručnjaka pokriva sve aspekte vašeg poslovanja, od dnevnog knjiženja do kompleksnih poreskih bilansa i likvidacija.</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">{t("services.title")}</h2>
+              <p className="text-lg text-graphite">{t("services.description")}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { 
-                icon: Calculator, 
-                title: "Finansijsko Knjigovodstvo", 
-                items: ["Knjiženje dokumentacije", "Obračun PDV-a", "Evidencija osnovnih sredstava", "Završni računi"]
+              {
+                icon: Calculator,
+                title: t("services.accounting.title"),
+                items: t("services.accounting.items", { returnObjects: true })
               },
-              { 
-                icon: PieChart, 
-                title: "Poresko Savetovanje", 
-                items: ["Poreski bilans", "Transferne cene", "Optimizacija poreza", "Amortizacija"]
+              {
+                icon: PieChart,
+                title: t("services.tax.title"),
+                items: t("services.tax.items", { returnObjects: true })
               },
-              { 
-                icon: Users, 
-                title: "HR i Obračuni", 
-                items: ["Obračun zarada", "Prijava i odjava radnika", "Ugovori o radu", "Kadrovska evidencija"]
+              {
+                icon: Users,
+                title: t("services.hr.title"),
+                items: t("services.hr.items", { returnObjects: true })
               },
-              { 
-                icon: Server, 
-                title: "TiM ERP Sistem", 
-                items: ["Elektronska arhiva", "Automatski uvoz izvoda (XML)", "Sinhronizacija podataka", "Povezivanje sa SEF-om"]
+              {
+                icon: Server,
+                title: t("services.erp.title"),
+                items: t("services.erp.items", { returnObjects: true })
               },
-              { 
-                icon: Scale, 
-                title: "Pravna Podrška", 
-                items: ["Osnivanje preduzeća", "Likvidacija firmi", "Statusne promene", "Pravni saveti"]
+              {
+                icon: Scale,
+                title: t("services.legal.title"),
+                items: t("services.legal.items", { returnObjects: true })
               },
-              { 
-                icon: Truck, 
-                title: "Logistika", 
-                items: ["Kurir za fiskalne račune", "Elektronska razmena", "Bez dolaska u agenciju", "Online uvid"]
+              {
+                icon: Truck,
+                title: t("services.logistics.title"),
+                items: t("services.logistics.items", { returnObjects: true })
               }
             ].map((service, idx) => (
               <motion.div
@@ -313,7 +309,7 @@ const MasterMindLanding: FC = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-6 font-heading text-navy">{service.title}</h3>
                 <ul className="space-y-3">
-                  {service.items.map((item, i) => (
+                  {(Array.isArray(service.items) ? service.items : []).map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-graphite">
                       <div className="w-1.5 h-1.5 rounded-full bg-trust-blue mt-2 flex-shrink-0" />
                       {item}
@@ -330,11 +326,11 @@ const MasterMindLanding: FC = () => {
       <section className="py-32 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Prilagođeni vašem uspehu</h2>
-            <p className="text-lg text-graphite">Razumemo specifične potrebe različitih profila lidera i pružamo tačno ono što vama treba.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">{t("personas.title")}</h2>
+            <p className="text-lg text-graphite">{t("personas.description")}</p>
           </div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -343,23 +339,23 @@ const MasterMindLanding: FC = () => {
           >
             {[
               {
-                title: "Menadžer",
-                subtitle: "Kome treba red",
-                desc: "Preciznost i uredna dokumentacija bez haosa.",
+                title: t("personas.manager.title"),
+                subtitle: t("personas.manager.subtitle"),
+                desc: t("personas.manager.description"),
                 img: personaManagerImg,
                 accent: "bg-blue-500"
               },
               {
-                title: "Preduzetnik",
-                subtitle: "Koji želi rast",
-                desc: "Fokus na razvoj biznisa, mi brinemo o brojevima.",
+                title: t("personas.entrepreneur.title"),
+                subtitle: t("personas.entrepreneur.subtitle"),
+                desc: t("personas.entrepreneur.description"),
                 img: personaEntrepreneurImg,
                 accent: "bg-indigo-500"
               },
               {
-                title: "Kontrolor",
-                subtitle: "Sigurnost je ključ",
-                desc: "Maksimalna pravna i poreska sigurnost.",
+                title: t("personas.controller.title"),
+                subtitle: t("personas.controller.subtitle"),
+                desc: t("personas.controller.description"),
                 img: personaControllerImg,
                 accent: "bg-slate-500"
               }
@@ -397,16 +393,16 @@ const MasterMindLanding: FC = () => {
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             <div className="lg:w-1/2 space-y-12">
               <div className="mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">Vaš put do <br/>urednog poslovanja</h2>
-                <p className="text-lg text-graphite">Jednostavan i transparentan proces saradnje u 4 koraka.</p>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-navy">{t("process.title")}</h2>
+                <p className="text-lg text-graphite">{t("process.description")}</p>
               </div>
 
               <div className="space-y-6">
                 {[
-                  { num: "01", title: "Analiza", desc: "Skeniramo vaše trenutno stanje i identifikujemo rizike." },
-                  { num: "02", title: "Postavljanje sistema", desc: "Implementiramo digitalne alate i procese." },
-                  { num: "03", title: "Mesečna obrada", desc: "Redovno knjiženje i izveštavanje bez kašnjenja." },
-                  { num: "04", title: "Poreska sigurnost", desc: "Kontinuirano praćenje propisa i savetovanje." }
+                  { num: "01", title: t("process.step1.title"), desc: t("process.step1.description") },
+                  { num: "02", title: t("process.step2.title"), desc: t("process.step2.description") },
+                  { num: "03", title: t("process.step3.title"), desc: t("process.step3.description") },
+                  { num: "04", title: t("process.step4.title"), desc: t("process.step4.description") }
                 ].map((step, idx) => (
                   <motion.div 
                     key={idx}
@@ -442,8 +438,8 @@ const MasterMindLanding: FC = () => {
                 />
                 <div className="absolute inset-0 bg-navy/20 z-20 mix-blend-multiply" />
                 <div className="absolute bottom-10 left-10 z-30 bg-white/90 backdrop-blur p-6 rounded-2xl max-w-xs shadow-lg">
-                  <div className="text-4xl font-bold text-trust-blue font-heading mb-2">API</div>
-                  <div className="text-sm font-bold text-navy uppercase tracking-wider">SEF & E-Banking Integracija</div>
+                  <div className="text-4xl font-bold text-trust-blue font-heading mb-2">{t("process.apiLabel")}</div>
+                  <div className="text-sm font-bold text-navy uppercase tracking-wider">{t("process.apiDescription")}</div>
                 </div>
               </motion.div>
             </div>
@@ -452,29 +448,35 @@ const MasterMindLanding: FC = () => {
       </section>
 
       {/* 7. Zašto nam veruju */}
-      <section className="py-32 bg-navy text-white relative overflow-hidden">
+      <section className="py-8 bg-navy text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 mix-blend-overlay">
            <img src={trustImg} className="w-full h-full object-cover" alt="Office Background" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy/90 to-navy" />
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Stabilnost na koju <br/>možete da računate</h2>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "ERP i Elektronska razmena", desc: "Potpuna integracija sa vašim sistemima." },
-              { title: "Advokat u timu", desc: "Interna pravna podrška za sve nedoumice." },
-              { title: "Stabilni procesi", desc: "Standardizovane procedure koje ne zavise od pojedinca." },
-              { title: "Transparentni rokovi", desc: "Uvek znate kada su vaše obaveze završene." }
+              { title: t("trust.pillar1.title"), desc: t("trust.pillar1.description") },
+              { title: t("trust.pillar2.title"), desc: t("trust.pillar2.description") },
+              { title: t("trust.pillar3.title"), desc: t("trust.pillar3.description") },
+              { title: t("trust.pillar4.title"), desc: t("trust.pillar4.description") }
             ].map((pillar, idx) => (
-              <div key={idx} className="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-colors group">
-                <CheckCircle2 className="w-10 h-10 text-trust-blue mb-8 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold mb-4 font-heading">{pillar.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{pillar.desc}</p>
-              </div>
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white/10 border border-white/20 p-8 md:p-10 rounded-3xl backdrop-blur-md hover:bg-white/15 transition-all duration-300 group shadow-lg hover:shadow-2xl hover:shadow-trust-blue/20"
+              >
+                <div className="p-3 bg-trust-blue/20 rounded-2xl w-fit mb-8 group-hover:bg-trust-blue/30 transition-colors">
+                  <CheckCircle2 className="w-8 h-8 text-trust-blue group-hover:scale-110 transition-transform" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold mb-4 font-heading text-white leading-snug">{pillar.title}</h3>
+                <p className="text-gray-200 text-base leading-relaxed">{pillar.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -488,23 +490,17 @@ const MasterMindLanding: FC = () => {
               <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-trust-blue to-blue-400" />
               
               <div className="p-12 text-center border-b border-silver/30">
-                <h3 className="text-3xl font-bold text-navy mb-3 font-heading">Standardni Paket</h3>
-                <div className="text-graphite font-medium mb-8">Sve što je potrebno maloj firmi</div>
+                <h3 className="text-3xl font-bold text-navy mb-3 font-heading">{t("pricing.title")}</h3>
+                <div className="text-graphite font-medium mb-8">{t("pricing.subtitle")}</div>
                 <div className="text-5xl font-bold text-navy mb-2 tracking-tight font-heading">
-                  200€ <span className="text-lg text-graphite font-normal align-middle">/ mesečno</span>
+                  {t("pricing.price")} <span className="text-lg text-graphite font-normal align-middle">{t("pricing.period")}</span>
                 </div>
-                <div className="text-xs text-trust-blue font-bold uppercase tracking-wider mt-4">Početna cena</div>
+                <div className="text-xs text-trust-blue font-bold uppercase tracking-wider mt-4">{t("pricing.badge")}</div>
               </div>
-              
+
               <div className="p-12 bg-gray-50/50">
                 <ul className="space-y-5 mb-10">
-                  {[
-                    "Vođenje glavne knjige",
-                    "Obračun PDV-a",
-                    "Obračun zarada (do 5 zaposlenih)",
-                    "Završni račun",
-                    "Poresko savetovanje (2h mesečno)"
-                  ].map((item, i) => (
+                  {(t("pricing.features", { returnObjects: true }) as string[]).map((item, i) => (
                     <li key={i} className="flex items-center gap-4 text-navy font-medium">
                       <div className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
                         <CheckCircle2 size={14} />
@@ -513,8 +509,11 @@ const MasterMindLanding: FC = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-navy hover:bg-navy-light text-white py-7 rounded-xl text-lg font-bold shadow-lg shadow-navy/20 transition-all hover:scale-[1.02]">
-                  Zatražite ponudu
+                <Button
+                  onClick={() => scrollToSection("kontakt")}
+                  className="w-full bg-trust-blue hover:bg-trust-blue-light text-white py-7 rounded-xl text-lg font-bold shadow-md shadow-trust-blue/20 hover:shadow-lg hover:shadow-trust-blue/30 transition-all hover:scale-[1.02] cursor-pointer"
+                >
+                  {t("pricing.button")}
                 </Button>
               </div>
             </div>
@@ -525,14 +524,14 @@ const MasterMindLanding: FC = () => {
       {/* 9. FAQ - Cleaner Accordion */}
       <section className="py-32 bg-white">
         <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-          <h2 className="text-4xl font-bold mb-16 text-center font-heading text-navy">Česta pitanja</h2>
-          
+          <h2 className="text-4xl font-bold mb-16 text-center font-heading text-navy">{t("faq.title")}</h2>
+
           <Accordion type="single" collapsible className="w-full space-y-4">
             {[
-              { q: "Da li radite sa paušalcima?", a: "Da, imamo posebne pakete prilagođene paušalnim agencijama koji uključuju test samostalnosti." },
-              { q: "Kako funkcioniše prelazak od drugog knjigovođe?", a: "Mi preuzimamo kompletnu komunikaciju i prenos dokumentacije. Vaše je samo da potpišete ovlašćenje." },
-              { q: "Da li koristite online knjigovodstvo?", a: "Da, koristimo savremene cloud alate i omogućavamo vam uvid u vaše finansije u realnom vremenu." },
-              { q: "Šta ako imam inspekciju?", a: "Naš tim, uključujući pravnu podršku, je uz vas tokom celog procesa kontrole." }
+              { q: t("faq.q1"), a: t("faq.a1") },
+              { q: t("faq.q2"), a: t("faq.a2") },
+              { q: t("faq.q3"), a: t("faq.a3") },
+              { q: t("faq.q4"), a: t("faq.a4") }
             ].map((faq, idx) => (
               <AccordionItem key={idx} value={`item-${idx}`} className="border border-silver/50 rounded-2xl px-6 bg-gray-50/30 hover:bg-white transition-colors">
                 <AccordionTrigger className="text-navy hover:text-trust-blue text-left font-bold py-6 text-lg hover:no-underline">
@@ -547,81 +546,127 @@ const MasterMindLanding: FC = () => {
         </div>
       </section>
 
-      {/* 10. Kontakt - Modern Form */}
-      <section id="kontakt" className="py-32 bg-ice-white border-t border-silver/30">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div>
-              <h2 className="text-4xl font-bold mb-6 font-heading text-navy">Kontaktirajte nas</h2>
-              <p className="text-graphite mb-12 text-lg">Zakažite sastanak ili nam pošaljite upit. Odgovaramo u roku od 24h.</p>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy uppercase tracking-wider">Ime i Prezime</label>
-                    <Input className="bg-white border-silver focus:border-trust-blue rounded-xl h-14 px-5 text-base shadow-sm" placeholder="Petar Petrović" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy uppercase tracking-wider">Email</label>
-                    <Input className="bg-white border-silver focus:border-trust-blue rounded-xl h-14 px-5 text-base shadow-sm" placeholder="petar@firma.com" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-navy uppercase tracking-wider">Firma</label>
-                  <Input className="bg-white border-silver focus:border-trust-blue rounded-xl h-14 px-5 text-base shadow-sm" placeholder="Naziv vaše kompanije" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-navy uppercase tracking-wider">Poruka</label>
-                  <Textarea className="bg-white border-silver focus:border-trust-blue rounded-xl min-h-[180px] p-5 text-base shadow-sm" placeholder="Kako možemo da vam pomognemo?" />
-                </div>
-                <Button className="bg-trust-blue hover:bg-trust-blue-light text-white px-10 py-7 rounded-xl w-full md:w-auto text-lg font-bold shadow-lg shadow-trust-blue/20">
-                  Pošaljite poruku
-                </Button>
-              </form>
+      {/* 10. Kontakt - Modern with shadcn Components */}
+      <section id="kontakt" className="py-32 bg-gradient-to-b from-ice-white via-blue-50/30 to-ice-white relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-bl from-trust-blue/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-100/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <Badge variant="outline" className="mb-6 border-trust-blue/30 text-trust-blue">
+                <span className="w-2 h-2 rounded-full bg-trust-blue mr-2 animate-pulse"/>
+                {t("contact.badge")}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 font-heading text-navy">{t("contact.title")}</h2>
+              <p className="text-lg text-graphite max-w-2xl mx-auto">{t("contact.description")}</p>
+            </motion.div>
+
+            {/* Contact Info Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              {[
+                { icon: MapPin, title: t("contact.location"), items: [t("contact.address1"), t("contact.address2")] },
+                { icon: Phone, title: t("contact.phone"), items: [t("contact.phone1"), t("contact.phone2")] },
+                { icon: Mail, title: t("contact.email"), items: [t("contact.emailAddress")] }
+              ].map((contact, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <Card className="border-white/40 bg-white/40 backdrop-blur-xl hover:bg-white/50 hover:border-trust-blue/40 transition-all h-full group">
+                    <CardHeader>
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-gradient-to-br from-trust-blue/20 to-blue-400/10 rounded-2xl text-trust-blue group-hover:from-trust-blue/30 group-hover:to-blue-400/20 transition-all">
+                          <contact.icon size={24} />
+                        </div>
+                        <CardTitle className="text-navy">{contact.title}</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        {contact.items.map((item, i) => (
+                          <p key={i} className="text-graphite font-medium">{item}</p>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="bg-navy rounded-[2.5rem] text-white p-12 lg:p-20 space-y-12 shadow-2xl relative overflow-hidden">
-               {/* Decorative circle */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-trust-blue rounded-full blur-[100px] opacity-30 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+            {/* Contact Form Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="group"
+            >
+              <Card className="border border-white/80 bg-gradient-to-br from-white/70 via-white/60 to-white/40 backdrop-blur-3xl shadow-2xl shadow-trust-blue/15 hover:shadow-3xl hover:shadow-trust-blue/25 transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden relative">
+                {/* Shine effect on top */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-4 font-heading">
-                  <div className="p-3 bg-white/10 rounded-xl">
-                    <MapPin className="text-trust-blue" />
-                  </div>
-                   Lokacije
-                </h3>
-                <div className="space-y-4 text-gray-300 pl-16">
-                  <p>Bulevar Kralja Aleksandra 123<br/>11000 Beograd</p>
-                  <p>Jurija Gagarina 45<br/>11070 Novi Beograd</p>
-                </div>
-              </div>
-
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-4 font-heading">
-                  <div className="p-3 bg-white/10 rounded-xl">
-                    <Phone className="text-trust-blue" />
-                  </div>
-                   Telefoni
-                </h3>
-                <div className="space-y-4 text-gray-300 pl-16">
-                  <p>+381 11 123 4567</p>
-                  <p>+381 64 123 4567</p>
-                </div>
-              </div>
-
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-4 font-heading">
-                  <div className="p-3 bg-white/10 rounded-xl">
-                    <Mail className="text-trust-blue" />
-                  </div>
-                   Email
-                </h3>
-                <div className="space-y-4 text-gray-300 pl-16">
-                  <p>kontakt@mastermind.rs</p>
-                </div>
-              </div>
-            </div>
+                <CardHeader className="pb-8">
+                  <CardTitle className="text-4xl font-bold text-navy font-heading">{t("contact.formTitle")}</CardTitle>
+                  <p className="text-graphite mt-3 text-base font-medium">{t("contact.formSubtitle")}</p>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-navy uppercase tracking-wider">{t("contact.nameLabel")}</label>
+                        <Input
+                          className="bg-white/70 border border-white/50 focus:border-trust-blue/80 focus:bg-white/90 rounded-xl h-12 px-4 text-base backdrop-blur-sm transition-all shadow-sm"
+                          placeholder={t("contact.namePlaceholder")}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-navy uppercase tracking-wider">{t("contact.emailLabel")}</label>
+                        <Input
+                          className="bg-white/70 border border-white/50 focus:border-trust-blue/80 focus:bg-white/90 rounded-xl h-12 px-4 text-base backdrop-blur-sm transition-all shadow-sm"
+                          placeholder={t("contact.emailPlaceholder")}
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy uppercase tracking-wider">{t("contact.companyLabel")}</label>
+                      <Input
+                        className="bg-white/70 border border-white/50 focus:border-trust-blue/80 focus:bg-white/90 rounded-xl h-12 px-4 text-base backdrop-blur-sm transition-all shadow-sm"
+                        placeholder={t("contact.companyPlaceholder")}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy uppercase tracking-wider">{t("contact.messageLabel")}</label>
+                      <Textarea
+                        className="bg-white/70 border border-white/50 focus:border-trust-blue/80 focus:bg-white/90 rounded-xl min-h-[140px] p-4 text-base backdrop-blur-sm transition-all resize-none shadow-sm"
+                        placeholder={t("contact.messagePlaceholder")}
+                      />
+                    </div>
+                    <div className="flex gap-4 pt-6">
+                      <Button className="bg-trust-blue hover:bg-trust-blue-light text-white px-10 py-6 rounded-xl text-base font-bold shadow-md shadow-trust-blue/20 hover:shadow-lg hover:shadow-trust-blue/40 transition-all hover:scale-[1.02] cursor-pointer">
+                        {t("contact.sendButton")}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="border border-white/50 text-navy hover:bg-white/30 hover:border-trust-blue/50 px-10 py-6 rounded-xl text-base font-bold transition-all hover:scale-[1.02] bg-white/20"
+                      >
+                        {t("contact.cancelButton")}
+                      </Button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -634,7 +679,7 @@ const MasterMindLanding: FC = () => {
               MASTERMIN<span className="text-trust-blue">d</span>
             </div>
             <div className="text-graphite text-sm font-medium">
-              &copy; {new Date().getFullYear()} MasterMind Knjigovodstvo. Sva prava zadržana.
+              {t("footer.copyright", { year: new Date().getFullYear() })}
             </div>
           </div>
         </div>

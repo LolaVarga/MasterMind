@@ -1,0 +1,143 @@
+{
+  "header": {
+    "services": "Usluge",
+    "howWeWork": "Kako radimo",
+    "pricing": "Cene",
+    "contact": "Kontakt",
+    "languages": "SRB | ENG | RUS",
+    "bookConsultation": "Zakažite konsultacije"
+  },
+  "hero": {
+    "badge": "Digital Accounting & Advisory",
+    "title": "Vaš biznis.",
+    "titleHighlight": "Naš sistem.",
+    "titleEnd": "Bez granica.",
+    "description": "Kompletna knjigovodstvena, HR i poreska podrška na srpskom, engleskom i ruskom jeziku. Koristimo TiM ERP i SEF API za automatizovano poslovanje bez papira.",
+    "scheduleButton": "Zakažite sastanak",
+    "servicesButton": "Naše usluge"
+  },
+  "trustBar": {
+    "erpIntegration": "ERP Integracija",
+    "sefApi": "SEF API Povezivanje",
+    "lawyer": "Advokat u timu",
+    "digitalArchive": "Digitalna Arhiva"
+  },
+  "services": {
+    "title": "Sveobuhvatna podrška",
+    "description": "Naš tim stručnjaka pokriva sve aspekte vašeg poslovanja, od dnevnog knjiženja do kompleksnih poreskih bilansa i likvidacija.",
+    "accounting": {
+      "title": "Finansijsko Knjigovodstvo",
+      "items": ["Knjiženje dokumentacije", "Obračun PDV-a", "Evidencija osnovnih sredstava", "Završni računi"]
+    },
+    "tax": {
+      "title": "Poresko Savetovanje",
+      "items": ["Poreski bilans", "Transferne cene", "Optimizacija poreza", "Amortizacija"]
+    },
+    "hr": {
+      "title": "HR i Obračuni",
+      "items": ["Obračun zarada", "Prijava i odjava radnika", "Ugovori o radu", "Kadrovska evidencija"]
+    },
+    "erp": {
+      "title": "TiM ERP Sistem",
+      "items": ["Elektronska arhiva", "Automatski uvoz izvoda (XML)", "Sinhronizacija podataka", "Povezivanje sa SEF-om"]
+    },
+    "legal": {
+      "title": "Pravna Podrška",
+      "items": ["Osnivanje preduzeća", "Likvidacija firmi", "Statusne promene", "Pravni saveti"]
+    },
+    "logistics": {
+      "title": "Logistika",
+      "items": ["Kurir za fiskalne račune", "Elektronska razmena", "Bez dolaska u agenciju", "Online uvid"]
+    }
+  },
+  "personas": {
+    "title": "Prilagođeni vašem uspehu",
+    "description": "Razumemo specifične potrebe različitih profila lidera i pružamo tačno ono što vama treba.",
+    "manager": {
+      "title": "Menadžer",
+      "subtitle": "Kome treba red",
+      "description": "Preciznost i uredna dokumentacija bez haosa."
+    },
+    "entrepreneur": {
+      "title": "Preduzetnik",
+      "subtitle": "Koji želi rast",
+      "description": "Fokus na razvoj biznisa, mi brinemo o brojevima."
+    },
+    "controller": {
+      "title": "Kontrolor",
+      "subtitle": "Sigurnost je ključ",
+      "description": "Maksimalna pravna i poreska sigurnost."
+    }
+  },
+  "process": {
+    "title": "Vaš put do urednog poslovanja",
+    "description": "Jednostavan i transparentan proces saradnje u 4 koraka.",
+    "step1": { "title": "Analiza", "description": "Skeniramo vaše trenutno stanje i identifikujemo rizike." },
+    "step2": { "title": "Postavljanje sistema", "description": "Implementiramo digitalne alate i procese." },
+    "step3": { "title": "Mesečna obrada", "description": "Redovno knjiženje i izveštavanje bez kašnjenja." },
+    "step4": { "title": "Poreska sigurnost", "description": "Kontinuirano praćenje propisa i savetovanje." },
+    "apiLabel": "API",
+    "apiDescription": "SEF & E-Banking Integracija"
+  },
+  "trust": {
+    "pillar1": { "title": "ERP i Elektronska razmena", "description": "Potpuna integracija sa vašim sistemima." },
+    "pillar2": { "title": "Advokat u timu", "description": "Interna pravna podrška za sve nedoumice." },
+    "pillar3": { "title": "Stabilni procesi", "description": "Standardizovane procedure koje ne zavise od pojedinca." },
+    "pillar4": { "title": "Transparentni rokovi", "description": "Uvek znate kada su vaše obaveze završene." }
+  },
+  "pricing": {
+    "title": "Standardni Paket",
+    "subtitle": "Sve što je potrebno maloj firmi",
+    "price": "200€",
+    "period": "/ mesečno",
+    "badge": "Početna cena",
+    "features": [
+      "Vođenje glavne knjige",
+      "Obračun PDV-a",
+      "Obračun zarada (do 5 zaposlenih)",
+      "Završni račun",
+      "Poresko savetovanje (2h mesečno)"
+    ],
+    "button": "Zatražite ponudu"
+  },
+  "faq": {
+    "title": "Česta pitanja",
+    "q1": "Da li radite sa paušalcima?",
+    "a1": "Da, imamo posebne pakete prilagođene paušalnim agencijama koji uključuju test samostalnosti.",
+    "q2": "Kako funkcioniše prelazak od drugog knjigovođe?",
+    "a2": "Mi preuzimamo kompletnu komunikaciju i prenos dokumentacije. Vaše je samo da potpišete ovlašćenje.",
+    "q3": "Da li koristite online knjigovodstvo?",
+    "a3": "Da, koristimo savremene cloud alate i omogućavamo vam uvid u vaše finansije u realnom vremenu.",
+    "q4": "Šta ako imam inspekciju?",
+    "a4": "Naš tim, uključujući pravnu podršku, je uz vas tokom celog procesa kontrole."
+  },
+  "contact": {
+    "badge": "Hajde da razgovaramo",
+    "title": "Spreman za promenu?",
+    "description": "Zakažite besplatnu konsultaciju i saznajte kako možemo da transformišemo vaše poslovanje.",
+    "location": "Lokacije",
+    "address1": "Bulevar Kralja Aleksandra 123",
+    "address2": "11000 Beograd",
+    "phone": "Pozovite nas",
+    "phone1": "+381 11 123 4567",
+    "phone2": "+381 64 123 4567",
+    "email": "Email",
+    "emailAddress": "kontakt@mastermind.rs",
+    "formTitle": "Pošaljite nam poruku",
+    "formSubtitle": "Odgovaramo u roku od 24 sata",
+    "nameLabel": "Ime i Prezime",
+    "namePlaceholder": "Petar Petrović",
+    "emailLabel": "Email",
+    "emailPlaceholder": "petar@firma.com",
+    "companyLabel": "Firma",
+    "companyPlaceholder": "Naziv vaše kompanije",
+    "messageLabel": "Poruka",
+    "messagePlaceholder": "Kako možemo da vam pomognemo?",
+    "sendButton": "Pošaljite poruku",
+    "cancelButton": "Otkaži"
+  },
+  "footer": {
+    "copyright": "© {{year}} MasterMind Knjigovodstvo. Sva prava zadržana."
+  }
+}
+

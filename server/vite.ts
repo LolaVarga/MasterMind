@@ -33,6 +33,7 @@ export async function setupVite(server: Server, app: Express) {
 
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
+    console.log(`[Vite] Handling request: ${url}`);
 
     try {
       const clientTemplate = path.resolve(
