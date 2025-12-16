@@ -10,18 +10,24 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from dist/public
 const publicPath = path.join(__dirname, '../dist/public');
-if (fs.existsSync(publicPath)) {
-  app.use(express.static(publicPath));
 
-  // SPA fallback - serve index.html for all unmatched routes
-  app.use('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-  });
-} else {
-  app.get('/', (req, res) => {
-    res.status(500).json({ error: 'Build directory not found. Run npm run build first.' });
-  });
+if (fs.existsSync(publicPath)) {
+  // Serve static assets
+  app.use(express.static(publicPath, {
+    maxAge: '1d',
+    etag: false
+  }));
 }
+
+// SPA fallback - serve index.html for all unmatched routes
+app.get('*', (req, res) => {
+  const indexPath = path.join(publicPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(500).json({ error: 'Build directory not found. Run npm run build first.' });
+  }
+});
 
 module.exports = app;
 
